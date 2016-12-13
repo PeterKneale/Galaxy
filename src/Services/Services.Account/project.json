@@ -4,7 +4,10 @@
     "debugType": "portable",
     "emitEntryPoint": true
   },
-  "dependencies": {},
+  "dependencies": {
+    "Dapper": "1.50.2",
+    "Npgsql": "3.1.9"
+  },
   "frameworks": {
     "netcoreapp1.1": {
       "dependencies": {
