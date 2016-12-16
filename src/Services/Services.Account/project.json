@@ -2,18 +2,25 @@
   "version": "1.0.0-*",
   "buildOptions": {
     "debugType": "portable",
-    "emitEntryPoint": true
+    "emitEntryPoint": false
   },
   "dependencies": {
-    "Dapper": "1.50.2",
-    "Npgsql": "3.1.9"
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.1",
+    "Microsoft.AspNetCore.StaticFiles": "1.0.0",
+    "ServiceStack.Core": "1.0.*",
+    "ServiceStack.Interfaces.Core": "1.0.*",
+    "ServiceStack.Text.Core": "1.0.*",
+    "ServiceStack.Client.Core": "1.0.*",
+    "ServiceStack.Common.Core": "1.0.*",
+    "ServiceStack.OrmLite.Sqlite.Core": "1.0.30",
+    "ServiceStack.OrmLite.PostgreSQL.Core": "1.0.30"
   },
-  "frameworks": {
+ "frameworks": {
     "netcoreapp1.1": {
       "dependencies": {
         "Microsoft.NETCore.App": {
           "type": "platform",
-          "version": "1.1.0"
+          "version": "1.1.0-preview1-*"
         }
       },
       "imports": "dnxcore50"
