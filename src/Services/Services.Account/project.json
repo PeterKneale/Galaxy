@@ -15,7 +15,7 @@
     "ServiceStack.OrmLite.Sqlite.Core": "1.0.30",
     "ServiceStack.OrmLite.PostgreSQL.Core": "1.0.30"
   },
- "frameworks": {
+  "frameworks": {
     "netcoreapp1.1": {
       "dependencies": {
         "Microsoft.NETCore.App": {
