@@ -3,9 +3,10 @@ using ServiceStack.OrmLite;
 
 namespace Services.Account
 {
-    [Route("/account/{id}")]
+    [Route("/account/{id}", "GET", Summary = "GET Account", Notes="Get an Account by Id")]
     public class GetAccount : IReturn<GetAccountResponse>
     {
+        [ApiMember(Name="Id", Description = "Identifier", ParameterType = "path", DataType = "int", IsRequired = true)]
         public int Id { get; set; }
     }
 
@@ -19,7 +20,7 @@ namespace Services.Account
     {
         public object Any(GetAccount request)
         {
-            using (var transaction = Db.BeginTransaction())
+            using (var transaction = Db.OpenTransaction())
             {
                 var data = Db.SingleById<AccountData>(request.Id);
                 if (data == null)

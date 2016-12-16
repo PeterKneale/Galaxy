@@ -55,11 +55,25 @@ namespace Services.Account
 
         public override void Configure(Container container)
         {
-            LogManager.LogFactory = new ConsoleLogFactory(debugEnabled: false);
+            var log = LogManager.GetLogger(typeof(AppHost));
 
-            var dbFactory = new OrmLiteConnectionFactory(":memory:",  SqliteDialect.Provider);
+            SetConfig(new HostConfig
+            {
+                DebugMode = true
+            });
+
+            LogManager.LogFactory = new ConsoleLogFactory(debugEnabled: true);
+
+            var dbFactory = new OrmLiteConnectionFactory(":memory:", SqliteDialect.Provider);
             dbFactory.AutoDisposeConnection = false;
-            container.Register<IDbConnectionFactory>(c => new OrmLiteConnectionFactory(":memory:", SqliteDialect.Provider));
+            dbFactory.OpenDbConnection().CreateTableIfNotExists<AccountData>();
+            container.Register<IDbConnectionFactory>(c => dbFactory);
+
+            this.ServiceExceptionHandlers.Add((httpReq, request, exception) =>
+            {
+                log.Error($"Error: {exception.Message}. {exception.StackTrace}.", exception);
+                return null;
+            });
         }
     }
 }
