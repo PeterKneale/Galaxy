@@ -56,6 +56,9 @@ namespace Services.Account
         public override void Configure(Container container)
         {
             var log = LogManager.GetLogger(typeof(AppHost));
+            
+            Plugins.Add(new PostmanFeature());
+            Plugins.Add(new CorsFeature());
 
             SetConfig(new HostConfig
             {
